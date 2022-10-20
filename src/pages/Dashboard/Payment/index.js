@@ -1,10 +1,4 @@
-import { toast } from 'react-toastify';
-import { useState, useEffect } from 'react';
-import styled from 'styled-components';
-
-import api from '../../../services/api';
-import useToken from '../../../hooks/useToken';
-import Card from './component';
+import EventMode from '../../../components/EventMode';
 
 export default function Payment() {
   const token = useToken();
