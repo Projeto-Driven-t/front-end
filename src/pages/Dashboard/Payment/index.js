@@ -1,7 +1,7 @@
-import EventMode from '../../../components/EventMode';
+import IngressAndPayment from '../../../components/IngressAndPayment';
 
 export default function Payment() {
   return (
-    <EventMode />
+    <IngressAndPayment />
   );
 }
