@@ -26,7 +26,8 @@ export default function Payment() {
   });
  
   return (
-    <> {payment ?
+    <> 
+    {payment ?
       <PaymentConfirm>
         <ion-icon name="checkmark-circle-sharp"></ion-icon>
         <div className="message">
@@ -36,7 +37,8 @@ export default function Payment() {
       </PaymentConfirm>
       :
       <Card token={token} setPayment={setPayment}/>
-    }</>
+    }
+    </>
   );
 }
 
