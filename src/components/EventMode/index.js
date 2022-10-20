@@ -1,7 +1,7 @@
-import SubTitleTypography from './SubTitleTypography';
-import TitleTypography from './TitleTypography';
+import SubTitleTypography from '../SubTitleTypography';
+import TitleTypography from '../TitleTypography';
 
-export default function EventMode() {
+export default function IngressPayment() {
   return (
     <>
       <TitleTypography title={'Ingressos e pagamento'} />
