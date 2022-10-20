@@ -1,7 +1,3 @@
-import TicketAndPayment from '../../../components/TicketAndPayment';
-import TitleTypography from '../../../components/TitleTypography';
-import useEnrollment from '../../../hooks/api/useEnrollment';
-
 export default function Payment() {
   const { enrollment } = useEnrollment();
   return (
