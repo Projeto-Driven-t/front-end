@@ -1,15 +1,18 @@
+import { useContext } from 'react';
 import { useState } from 'react';
 import { createContext } from 'react';
 
 const EventModeContext = createContext();
-export default EventModeContext;
+const useEventModeContext = () => useContext(EventModeContext);
+
+export default useEventModeContext;
 
 export function EventModeProvider({ children }) {
-  const [eventData, setEventData] = useState(false);
+  const [eventData, setEventData] = useState(null);
 
   return (
     <EventModeContext.Provider value={{ eventData, setEventData }}>
-        {children}
+      {children}
     </EventModeContext.Provider>
   );
 }
