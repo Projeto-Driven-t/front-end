@@ -26,7 +26,7 @@ export default function EventMode() {
         })}
       </ModalityEvent>
       {selected.type === 'Presencial' ? <>Continuação do pedido</> : <></>}
-      {selected.type === 'Online' ? <EventOnline price={selected.price} /> : <></>}
+      {selected.type === 'Online' ? <EventOnline type={selected.type} price={selected.price} /> : <></>}
     </EventContainer>
   );
 }
