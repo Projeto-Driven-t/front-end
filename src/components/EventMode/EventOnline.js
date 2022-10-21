@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import useEventModeContext from '../../contexts/EventModeContext';
+import useEventModeContext from '../../contexts/PaymentContext';
 import Button from '../Form/Button';
 import SubTitleTypography from '../SubTitleTypography';
 
