@@ -1,4 +1,5 @@
 import EventMode from '../../../components/EventMode';
+import TicketAndPayment from '../../../components/TicketAndPayment';
 
 export default function Payment() {
   const token = useToken();
@@ -32,6 +33,7 @@ export default function Payment() {
       :
       <Card token={token} setPayment={setPayment}/>
     }
+    <TicketAndPayment />
     </>
   );
 }
@@ -90,73 +92,7 @@ const PaymentPage = styled.div`
     font-size: 13px;
     font-weight: 500;
   }
- 
- /* form {
-   width: 100%;
-   display: flex;
-   flex-direction: column;
-   gap: 50px;
-  
-   .flex {
-     display: flex;
-     gap: 30px;
- 
-     .cardNumber {
-       display: flex;
-       flex-direction: column;
-       gap: 5px;
-       p {
-         color: #BABBBB;
-       }
-     }
-    
-     input {
-       width: 100%;
-       height: 45px;
-       border-radius: 5px;
-       border: 1px solid #616161;
-      
-       padding-left: 10px;
-     }
-     input::placeholder {
-       font-size: 16px;
-       color: #BABBBB;
-     }
- 
-     .flex {
-       display: flex;
-       gap: 20px;
-     }
-   }
- 
-   button {
-     width: 182px;
-     height: 37px;
-     border: none;
-     border-radius: 4px;
-     background-color: #E0E0E0;
- 
-     font-size: 13px;
-     font-weight: 500;
-   }
- } */
-`;
- 
-// const Card = styled.div`
-//  width: 100%;
-//  height: 190px;
-//  background-color: #929292;
-//  border: none;
-//  border-radius: 15px;
-// `;
- 
-// const InfoCard = styled.div`
-//  width: 100%;
-//  height: 100%;
-//   display: flex;
-//  flex-direction: column;
-//  gap: 14px;
-// `;
+ `;
  
 const PaymentConfirm = styled.div`
  width: 100%;

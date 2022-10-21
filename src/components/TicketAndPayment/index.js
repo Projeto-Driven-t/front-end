@@ -3,7 +3,7 @@ import TitleTypography from '../TitleTypography';
 import CloseOrder from './CloseOrder';
 import Ticket from './Ticket';
 
-export default function IngressPayment() {
+export default function IngressAndPayment() {
   const { render } = usePaymentContext();
 
   return (
