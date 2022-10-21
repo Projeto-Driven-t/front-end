@@ -3,6 +3,7 @@ import usePaymentContext from '../../contexts/PaymentContext';
 
 export default function ResumeOrder() {
   const { eventData } = usePaymentContext();
+  const total = eventData.modalityPrice + eventData.hostingPrice;
 
   return (
     <ResumeWrapper>
