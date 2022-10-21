@@ -13,15 +13,15 @@ import Certificate from './pages/Dashboard/Certificate';
 
 import { EventInfoProvider } from './contexts/EventInfoContext';
 import { UserProvider } from './contexts/UserContext';
+import { PaymentProvider } from './contexts/PaymentContext';
 
 import useToken from './hooks/useToken';
-import { EventModeProvider } from './contexts/EventModeContext';
 
 export default function App() {
   return (
     <>
       <ToastContainer />
-      <EventModeProvider>
+      <PaymentProvider>
         <EventInfoProvider>
           <UserProvider>
             <Router>
@@ -49,7 +49,7 @@ export default function App() {
             </Router>
           </UserProvider>
         </EventInfoProvider>
-      </EventModeProvider>
+      </PaymentProvider>
     </>
   );
 }
