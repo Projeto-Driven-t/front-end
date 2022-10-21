@@ -8,7 +8,7 @@ const useEventModeContext = () => useContext(EventModeContext);
 export default useEventModeContext;
 
 export function EventModeProvider({ children }) {
-  const [eventData, setEventData] = useState(null);
+  const [eventData, setEventData] = useState({});
 
   return (
     <EventModeContext.Provider value={{ eventData, setEventData }}>
