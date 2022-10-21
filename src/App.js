@@ -16,7 +16,6 @@ import { UserProvider } from './contexts/UserContext';
 import { PaymentProvider } from './contexts/PaymentContext';
 
 import useToken from './hooks/useToken';
-import { EventModeProvider } from './contexts/EventModeContext';
 
 export default function App() {
   return (
