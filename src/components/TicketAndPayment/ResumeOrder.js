@@ -8,11 +8,16 @@ export default function ResumeOrder() {
   return (
     <ResumeWrapper>
       {eventData.modalityType === 'Presencial' ? (
-        <span>{`${eventData.modalityType} + ${eventData.accommodation}`}</span>
+        <>
+          <span>{`${eventData.modalityType} + ${eventData.accommodation}`}</span>
+          <h6>{`R$ ${total}`}</h6>
+        </>
       ) : (
-        <span>{eventData.modalityType}</span>
+        <>
+          <span>{eventData.modalityType}</span>
+          <h6>{`R$ ${eventData.modalityPrice}`}</h6>
+        </>
       )}
-      {eventData.modalityType === 'Presencial' ? <h6>{`R$ ${total}`}</h6> : <h6>{`R$ ${eventData.modalityPrice}`}</h6>}
     </ResumeWrapper>
   );
 }
