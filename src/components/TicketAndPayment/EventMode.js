@@ -18,7 +18,7 @@ export default function EventMode() {
             <Event
               key={index}
               type={modality.type}
-              price={`R$ ${modality.price}`}
+              price={modality.price}
               isSelected={selected === modality.type && selected === modality.price}
               callback={setSelected}
             />

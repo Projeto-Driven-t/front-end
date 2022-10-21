@@ -4,7 +4,7 @@ export default function Event({ type, price, isSelected, callback }) {
   return (
     <EventType isSelected={isSelected} onClick={() => callback({ type, price })}>
       <h5>{type}</h5>
-      <h6>{price}</h6>
+      <h6>{`R$ ${price}`}</h6>
     </EventType>
   );
 }

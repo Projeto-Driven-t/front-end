@@ -7,7 +7,7 @@ export default function EventOnline({ type, price }) {
   const { setEventData, render, setRender } = useEventModeContext();
 
   function closerOnlineOrder() {
-    setEventData({ type, price });
+    setEventData({ modalityType: type, modalityPrice: price });
     setRender(!render);
   }
 
