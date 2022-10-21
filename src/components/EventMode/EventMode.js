@@ -1,19 +1,32 @@
 import styled from 'styled-components';
-import Event from './Event';
 import useToggle from '../../hooks/useToggle';
+import Event from './Event';
 import EventOnline from './EventOnline';
 
 export default function EventMode() {
-  const { firstOption, secondOption, selectFirstOption, selectSecondOption } = useToggle();
-  let price = '800';
+  const { selected, setSelected } = useToggle();
+  const MODALITIES = [
+    { id: 1, type: 'Presencial', price: 500 },
+    { id: 2, type: 'Online', price: 150 },
+  ];
 
   return (
     <EventContainer>
       <ModalityEvent>
-        <Event type={'Presencial'} price={`R$ ${price}`} isSelected={firstOption} callback={selectFirstOption} />
-        <Event type={'Online'} price={`R$ ${price}`} isSelected={secondOption} callback={selectSecondOption} />
+        {MODALITIES.map((modality, index) => {
+          return (
+            <Event
+              key={index}
+              type={modality.type}
+              price={`R$ ${modality.price}`}
+              isSelected={selected === modality.type && selected === modality.price}
+              callback={setSelected}
+            />
+          );
+        })}
       </ModalityEvent>
-      {secondOption ? <EventOnline price={price} /> : <></>}
+      {selected.type === 'Presencial' ? <>Continuação do pedido</> : <></>}
+      {selected.type === 'Online' ? <EventOnline price={selected.price} /> : <></>}
     </EventContainer>
   );
 }
