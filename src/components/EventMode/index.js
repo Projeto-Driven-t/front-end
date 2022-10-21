@@ -1,16 +1,15 @@
-import SubTitleTypography from '../SubTitleTypography';
+import usePaymentContext from '../../contexts/PaymentContext';
 import TitleTypography from '../TitleTypography';
-import EventMode from './EventMode';
-import { EventWrapper } from './EventWrapper';
+import CloseOrder from './CloseOrder';
+import Ticket from './Ticket';
 
 export default function IngressPayment() {
+  const { render } = usePaymentContext();
+
   return (
     <>
       <TitleTypography title={'Ingressos e pagamento'} />
-      <SubTitleTypography title={'Primeiro, escolha sua modalidade de ingresso'} />
-      <EventWrapper>
-        <EventMode />
-      </EventWrapper>
+      {render ? <CloseOrder /> : <Ticket />}
     </>
   );
 }
