@@ -1,4 +1,3 @@
-import styled from 'styled-components';
 import SubTitleTypography from '../SubTitleTypography';
 import ResumeOrder from './ResumeOrder';
 
