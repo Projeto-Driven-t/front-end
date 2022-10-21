@@ -1,14 +1,16 @@
 import styled from 'styled-components';
 import useEventModeContext from '../../contexts/PaymentContext';
-import Button from '../Form/Button';
 import SubTitleTypography from '../SubTitleTypography';
+import Button from '../Form/Button';
 
 export default function EventOnline({ type, price }) {
-  const { setEventData } = useEventModeContext();
+  const { setEventData, render, setRender } = useEventModeContext();
 
   function closerOnlineOrder() {
     setEventData({ type, price });
+    setRender(!render);
   }
+
   return (
     <OrderContainer>
       <SubTitleTypography title={`Fechado! O total ficou em R$ ${price}. Agora é só confirmar:`} />
