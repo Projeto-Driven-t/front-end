@@ -43,7 +43,7 @@ export default function EventMode() {
           );
         })}
       </ModalityContainer>
-      {selected.type === 'Presencial' ? <>Continuação do pedido</> : <></>}
+      {selected.type === 'Presencial' ? <EventPresential type={selected.type} price={selected.price}/> : <></>}
       {selected.type === 'Online' ? <EventOnline type={selected.type} price={selected.price} /> : <></>}
     </TicketContainer>
   );
