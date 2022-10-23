@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import useToggle from '../../hooks/useToggle';
 import Event from './Event';
 import EventOnline from './EventOnline';
+import EventPresential from './EventPresential';
 
 export default function EventMode() {
   const { selected, setSelected } = useToggle();
@@ -19,13 +20,13 @@ export default function EventMode() {
               key={index}
               type={modality.type}
               price={modality.price}
-              isSelected={selected === modality.type && selected === modality.price}
+              isSelected={selected.type === modality.type && selected.price === modality.price}
               callback={setSelected}
             />
           );
         })}
       </ModalityEvent>
-      {selected.type === 'Presencial' ? <>Continuação do pedido</> : <></>}
+      {selected.type === 'Presencial' ? <EventPresential type={selected.type} price={selected.price}/> : <></>}
       {selected.type === 'Online' ? <EventOnline type={selected.type} price={selected.price} /> : <></>}
     </EventContainer>
   );
