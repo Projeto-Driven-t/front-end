@@ -13,6 +13,7 @@ import useAccommodation from '../../hooks/api/useAccommodation';
 export default function EventMode() {
   const { selected, setSelected } = useToggle();
   const [listOfModalities, setListOfModalities] = useState([]);
+  const [accommodation, setListOfAccommodations] = useState([]);
   const { modality } = useModality();
 
   async function renderModalities() {
