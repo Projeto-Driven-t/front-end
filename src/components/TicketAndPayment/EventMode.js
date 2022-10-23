@@ -7,6 +7,7 @@ import useModality from '../../hooks/api/useModality';
 
 import Event from './Event';
 import EventOnline from './EventOnline';
+import EventPresential from './EventPresential';
 
 export default function EventMode() {
   const { selected, setSelected } = useToggle();
@@ -42,7 +43,7 @@ export default function EventMode() {
           );
         })}
       </ModalityContainer>
-      {selected.type === 'Presencial' ? <>Continuação do pedido</> : <></>}
+      {selected.type === 'Presencial' ? <EventPresential type={selected.type} price={selected.price}/> : <></>}
       {selected.type === 'Online' ? <EventOnline type={selected.type} price={selected.price} /> : <></>}
     </TicketContainer>
   );
