@@ -1,43 +1,60 @@
+import { useEffect, useState } from 'react';
+import { toast } from 'react-toastify';
 import styled from 'styled-components';
+
 import useToggle from '../../hooks/useToggle';
+import useModality from '../../hooks/api/useModality';
+
 import Event from './Event';
 import EventOnline from './EventOnline';
 
 export default function EventMode() {
   const { selected, setSelected } = useToggle();
-  const MODALITIES = [
-    { id: 1, type: 'Presencial', price: 500 },
-    { id: 2, type: 'Online', price: 150 },
-  ];
+  const [listOfModalities, setListOfModalities] = useState([]);
+  const { modality } = useModality();
+
+  async function renderModalities() {
+    try {
+      await setListOfModalities([...modality]);
+    } catch (err) {
+      toast('Não foi possível carregar os ingressos');
+    }
+  }
+
+  useEffect(() => {
+    if (modality) {
+      renderModalities();
+    }
+  }, [modality]);
 
   return (
-    <EventContainer>
-      <ModalityEvent>
-        {MODALITIES.map((modality, index) => {
+    <TicketContainer>
+      <ModalityContainer>
+        {listOfModalities.map((event, index) => {
           return (
             <Event
               key={index}
-              type={modality.type}
-              price={modality.price}
-              isSelected={selected === modality.type && selected === modality.price}
+              type={event.modality}
+              price={event.price}
+              isSelected={selected.type === event.modality && selected.price === event.price}
               callback={setSelected}
             />
           );
         })}
-      </ModalityEvent>
+      </ModalityContainer>
       {selected.type === 'Presencial' ? <>Continuação do pedido</> : <></>}
       {selected.type === 'Online' ? <EventOnline type={selected.type} price={selected.price} /> : <></>}
-    </EventContainer>
+    </TicketContainer>
   );
 }
 
-const EventContainer = styled.main`
+const TicketContainer = styled.main`
   width: 100%;
   display: flex;
   flex-direction: column;
 `;
 
-const ModalityEvent = styled.div`
+const ModalityContainer = styled.div`
   display: flex;
   flex: 1;
   flex-direction: row;
