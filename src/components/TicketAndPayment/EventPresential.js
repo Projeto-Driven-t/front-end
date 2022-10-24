@@ -6,7 +6,7 @@ import Button from '../Form/Button';
 import Accommodation from './Accommodation';
 import useToggle from '../../hooks/useToggle';
 
-export default function EventPresential({ type, price }) {
+export default function EventPresential({ type, price, accommodation }) {
   const { selected, setSelected } = useToggle();
   
   const { setEventData, render, setRender } = useEventModeContext();
@@ -15,11 +15,6 @@ export default function EventPresential({ type, price }) {
     setEventData({ modalityType: type, modalityPrice: 0, accommodation: selected.stayType, hostingPrice: selected.price });
     setRender(!render);
   }
-
-  const accommodation = [
-    { id: 1, stayType: 'Sem Hotel', price: 0 },
-    { id: 2, stayType: 'Com Hotel', price: 350 }
-  ];
 
   return (
     <>
@@ -31,11 +26,11 @@ export default function EventPresential({ type, price }) {
               return (
                 <Accommodation
                   key={index}
-                  stayType={accommodation.stayType}
+                  stayType={accommodation.accommodation}
                   type={type}
                   accommodationPrice={accommodation.price}
                   eventPrice={price}
-                  isSelected={selected.stayType === accommodation.stayType && selected.price === (accommodation.price + price)}
+                  isSelected={selected.stayType === accommodation.accommodation && selected.price === (accommodation.price + price)}
                   callback={setSelected}
                 />
               );
