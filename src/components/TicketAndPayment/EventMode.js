@@ -13,8 +13,9 @@ import useAccommodation from '../../hooks/api/useAccommodation';
 export default function EventMode() {
   const { selected, setSelected } = useToggle();
   const [listOfModalities, setListOfModalities] = useState([]);
-  const [accommodation, setListOfAccommodations] = useState([]);
+  const [listOfAccommodations, setListOfAccommodations] = useState([]);
   const { modality } = useModality();
+  const { accommodation } = useAccommodation();
 
   async function renderModalities() {
     try {
@@ -50,7 +51,7 @@ export default function EventMode() {
           );
         })}
       </ModalityContainer>
-      {selected.type === 'Presencial' ? <EventPresential type={selected.type} price={selected.price}/> : <></>}
+      {selected.type === 'Presencial' ? <EventPresential type={selected.type} price={selected.price} accommodation={listOfAccommodations}/> : <></>}
       {selected.type === 'Online' ? <EventOnline type={selected.type} price={selected.price} /> : <></>}
     </TicketContainer>
   );
