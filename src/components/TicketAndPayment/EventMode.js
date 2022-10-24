@@ -8,15 +8,19 @@ import useModality from '../../hooks/api/useModality';
 import Event from './Event';
 import EventOnline from './EventOnline';
 import EventPresential from './EventPresential';
+import useAccommodation from '../../hooks/api/useAccommodation';
 
 export default function EventMode() {
   const { selected, setSelected } = useToggle();
   const [listOfModalities, setListOfModalities] = useState([]);
+  const [listOfAccommodations, setListOfAccommodations] = useState([]);
   const { modality } = useModality();
+  const { accommodation } = useAccommodation();
 
   async function renderModalities() {
     try {
       await setListOfModalities([...modality]);
+      await setListOfAccommodations([...accommodation]);
     } catch (err) {
       toast('Não foi possível carregar os ingressos');
     }
@@ -26,7 +30,11 @@ export default function EventMode() {
     if (modality) {
       renderModalities();
     }
-  }, [modality]);
+
+    if(accommodation) {
+      renderModalities();
+    }
+  }, [modality, accommodation]);
 
   return (
     <TicketContainer>
@@ -43,7 +51,7 @@ export default function EventMode() {
           );
         })}
       </ModalityContainer>
-      {selected.type === 'Presencial' ? <EventPresential type={selected.type} price={selected.price}/> : <></>}
+      {selected.type === 'Presencial' ? <EventPresential type={selected.type} price={selected.price} accommodation={listOfAccommodations}/> : <></>}
       {selected.type === 'Online' ? <EventOnline type={selected.type} price={selected.price} /> : <></>}
     </TicketContainer>
   );
