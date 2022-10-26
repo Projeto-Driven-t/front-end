@@ -1,6 +1,7 @@
 import TicketAndPayment from '../../../components/TicketAndPayment';
 import useEnrollment from '../../../hooks/api/useEnrollment';
 import TitleTypography from '../../../components/TitleTypography';
+import { Warning } from '../../../components/Auth';
 
 export default function Payment() {
   const { enrollment } = useEnrollment();
@@ -8,7 +9,7 @@ export default function Payment() {
   return (
     <>
       <TitleTypography title={'Ingressos e pagamento'} />
-      {enrollment? <TicketAndPayment /> : <p>Você precisa completar sua inscrição antes de prosseguir pra escolha de ingresso</p>}
+      {enrollment? <TicketAndPayment /> : <Warning>Você precisa completar sua inscrição antes de prosseguir pra escolha de ingresso</Warning>}
     </>
   );
 }
