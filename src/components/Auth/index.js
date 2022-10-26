@@ -8,6 +8,8 @@ export const StyledContainer = styled(Container)`
   align-items: center;
   justify-content: space-between;
   padding: 30px;
+
+  position: relative;
 `;
 
 export const Title = styled.h1`
@@ -26,4 +28,21 @@ export const Row = styled.div`
   align-items: center;
   justify-content: flex-start;
   width: 100%;
+`;
+
+export const Warning = styled.p`
+  position: absolute;
+  width: 388px;
+  height: 46px;
+  left: calc(50% - 194px);
+  top: calc(50% - 23px);
+
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 23px;
+  text-align: center;
+
+  color: #8E8E8E;
 `;
