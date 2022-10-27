@@ -8,11 +8,17 @@ import useToggle from '../../hooks/useToggle';
 
 export default function EventPresential({ type, price, accommodation }) {
   const { selected, setSelected } = useToggle();
-  
+
   const { setEventData, render, setRender } = useEventModeContext();
 
   function closerOnlineOrder() {
-    setEventData({ modalityType: type, modalityPrice: 0, accommodation: selected.stayType, hostingPrice: selected.price });
+    setEventData({
+      modalityType: type,
+      modalityPrice: 0,
+      accommodation: selected.stayType,
+      hostingPrice: selected.price,
+      totalValue: selected.price,
+    });
     setRender(!render);
   }
 
@@ -30,32 +36,33 @@ export default function EventPresential({ type, price, accommodation }) {
                   type={type}
                   accommodationPrice={accommodation.price}
                   eventPrice={price}
-                  isSelected={selected.stayType === accommodation.accommodation && selected.price === (accommodation.price + price)}
+                  isSelected={
+                    selected.stayType === accommodation.accommodation && selected.price === accommodation.price + price
+                  }
                   callback={setSelected}
                 />
               );
             })}
           </ModalityEvent>
         </AccommodationContainer>
-        {
-          selected.price === undefined ? <></> : (
-            <OrderContainer>
-              <SubTitleTypography title={`Fechado! O total ficou em R$ ${selected.price}. Agora é só confirmar:`} />
-              <CloseOrderContainer>
-                <Button type="submit" onClick={() => closerOnlineOrder()}>
-                  Reservar Ingresso
-                </Button>
-              </CloseOrderContainer>
-            </OrderContainer>
-          )
-        }
+        {selected.price === undefined ? (
+          <></>
+        ) : (
+          <OrderContainer>
+            <SubTitleTypography title={`Fechado! O total ficou em R$ ${selected.price}. Agora é só confirmar:`} />
+            <CloseOrderContainer>
+              <Button type="submit" onClick={() => closerOnlineOrder()}>
+                Reservar Ingresso
+              </Button>
+            </CloseOrderContainer>
+          </OrderContainer>
+        )}
       </Container>
     </>
   );
 }
 
-const Container = styled.div`
-`;
+const Container = styled.div``;
 
 const AccommodationContainer = styled.div`
   display: flex;

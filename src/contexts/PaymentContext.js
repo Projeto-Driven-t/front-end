@@ -10,9 +10,12 @@ export default usePaymentContext;
 export function PaymentProvider({ children }) {
   const [eventData, setEventData] = useState({});
   const [render, setRender] = useState(false);
+  const [confirmedPayment, setConfirmedPayment] = useState(null);
 
   return (
-    <PaymentContext.Provider value={{ eventData, setEventData, render, setRender }}>
+    <PaymentContext.Provider
+      value={{ eventData, setEventData, render, setRender, confirmedPayment, setConfirmedPayment }}
+    >
       {children}
     </PaymentContext.Provider>
   );

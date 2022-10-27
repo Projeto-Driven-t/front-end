@@ -3,19 +3,18 @@ import usePaymentContext from '../../contexts/PaymentContext';
 
 export default function ResumeOrder() {
   const { eventData } = usePaymentContext();
-  const total = eventData.modalityPrice + eventData.hostingPrice;
 
   return (
     <ResumeWrapper>
       {eventData.modalityType === 'Presencial' ? (
         <>
           <span>{`${eventData.modalityType} + ${eventData.accommodation}`}</span>
-          <h6>{`R$ ${total}`}</h6>
+          <h6>{`R$ ${eventData.totalValue}`}</h6>
         </>
       ) : (
         <>
           <span>{eventData.modalityType}</span>
-          <h6>{`R$ ${eventData.modalityPrice}`}</h6>
+          <h6>{`R$ ${eventData.totalValue}`}</h6>
         </>
       )}
     </ResumeWrapper>

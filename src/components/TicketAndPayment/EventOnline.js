@@ -7,7 +7,13 @@ export default function EventOnline({ type, price }) {
   const { setEventData, render, setRender } = useEventModeContext();
 
   function closerOnlineOrder() {
-    setEventData({ modalityType: type, modalityPrice: price });
+    setEventData({
+      modalityType: type,
+      modalityPrice: price,
+      accommodation: 'Sem Hotel',
+      hostingPrice: 0,
+      totalValue: price,
+    });
     setRender(!render);
   }
 
