@@ -2,10 +2,12 @@ import { useState } from 'react';
 import paymentValidation from '../components/TicketAndPayment/PaymentValidation';
 import usePaymentContext from '../contexts/PaymentContext';
 import useSavePayment from './api/useSavePayment';
+import useSaveTicket from './api/useSaveTicket';
 
 export default function usePaymentForm() {
-  const { eventData } = usePaymentContext();
+  const { eventData, setConfirmedPayment } = usePaymentContext();
   const { savePayment } = useSavePayment();
+  const { saveTicket } = useSaveTicket();
   const [errors, setErrors] = useState({});
   const [values, setValues] = useState({
     name: '',
@@ -41,6 +43,17 @@ export default function usePaymentForm() {
       cvv: values.cvc,
       totalValue: `${eventData.totalValue}`,
     });
+    const ticket = await saveTicket({
+      modality: eventData.modalityType,
+      modalityPrice: eventData.modalityPrice,
+      accommodation: eventData.accommodation,
+      accommodationPrice: eventData.hostingPrice,
+      totalValue: eventData.totalValue,
+    });
+
+    if (ticket) {
+      setConfirmedPayment(ticket);
+    }
   };
 
   return {
