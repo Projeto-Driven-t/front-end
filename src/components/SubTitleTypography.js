@@ -7,5 +7,6 @@ export default function SubTitleTypography({ title }) {
 
 const StyledTypography = styled(Typography)`
   margin-bottom: 17px !important;
+  font-weight: 400 !important;
   color: #8e8e8e;
 `;
