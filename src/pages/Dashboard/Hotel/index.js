@@ -22,7 +22,7 @@ export default function Payment() {
       <TitleTypography title={'Escolha de Hotel e Quarto'} />
       {
         (checkTicket && checkTicket.modality === 'Presencial') || (checkTicket && checkTicket.accommodation === 'Com Hotel') ?
-          <p>Escolha de Hotel Coming Soon...</p>
+          <HotelAndRoom />
           :
           message
       }
