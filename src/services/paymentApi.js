@@ -17,5 +17,5 @@ export async function checkPayment(token) {
     },
   });
   
-  return response.data;
+  return response.data;    
 }
