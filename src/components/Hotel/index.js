@@ -1,9 +1,10 @@
-import AllRooms from './AllRooms';
+import useHotelContext from '../../contexts/HotelContext';
+import Hotel from './Hotel';
 
-export default function Hosting() {
+export default function HotelAndRoom() {
   return (
     <>
-      <AllRooms />
+      <Hotel />
     </>
   );
 }
