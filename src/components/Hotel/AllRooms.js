@@ -1,29 +1,28 @@
 import styled from 'styled-components';
+import useHotelContext from '../../contexts/HotelContext';
 import useToggle from '../../hooks/useToggle';
 import Button from '../Form/Button';
 import SubTitleTypography from '../SubTitleTypography';
-import { rooms } from './mockData';
 import Room from './Room';
 
-export default function AllRooms() {
+export default function AllRooms({ rooms, id }) {
   const { selected, setSelected } = useToggle();
+  const { hotelData, setHotelData, render, setRender } = useHotelContext();
 
   function reserveRoom() {
-    //info de hotel, com nome e id, vem por contexto
-    const hotelData = {
+    setHotelData({
+      ...hotelData,
       type: selected.type,
       number: selected.number,
       roomId: selected.id,
-    };
-    //setHotelData ainda será construído
-    console.log(hotelData);
+    });
   }
 
   return (
     <>
       <SubTitleTypography title={'Ótima pedida! Agora escolha seu quarto: '} />
       <Container>
-        {rooms.map((room, index) => {
+        {rooms[id - 1].Room.map((room, index) => {
           return (
             <Room
               key={index}
@@ -39,11 +38,13 @@ export default function AllRooms() {
           );
         })}
       </Container>
-      {selected.id && selected.type && selected.number ? (
-        <Button onClick={() => reserveRoom()}>Reservar Quarto</Button>
-      ) : (
-        <></>
-      )}
+      <BookRoom>
+        {selected.id && selected.type && selected.number ? (
+          <Button onClick={() => reserveRoom()}>Reservar Quarto</Button>
+        ) : (
+          <></>
+        )}
+      </BookRoom>
     </>
   );
 }
@@ -54,5 +55,9 @@ const Container = styled.div`
   align-items: center;
   flex-wrap: wrap;
   gap: 8px 17px;
-  margin-bottom: 38px;
+  margin-bottom: 30px;
+`;
+
+const BookRoom = styled.span`
+
 `;

@@ -1,13 +1,24 @@
 import styled from 'styled-components';
 import Typography from '@material-ui/core/Typography';
+import useHotelContext from '../../contexts/HotelContext';
 
-export default function HotelCard({ name, image, roomTypes, vacancies, isSelected, callback }) {
+export default function HotelCard({ id, name, image, roomTypes, vacancies, isSelected, callback }) {
+  const { setHotelData } = useHotelContext();
+
+  function hotelSelection() {
+    setHotelData({
+      hotelId: id,
+      name,
+      image,
+    });
+  }
+
   return (
-    <Card isSelected={isSelected} onClick={() => callback({ name })}>
+    <Card isSelected={isSelected} onClick={() => (hotelSelection(), callback({ id, name, image }))}>
       <img src={image} alt={name} />
       <div className='Hotel-Info'>
         <div>
-          <Typography variant="h7">{name}</Typography>
+          <Typography variant='h7'>{name}</Typography>
         </div>
         <div className='Hotel-Info'>
           <span className='minor-info'>Tipos de acomodação: </span>
@@ -17,7 +28,7 @@ export default function HotelCard({ name, image, roomTypes, vacancies, isSelecte
           <span className='minor-info'>Vagas disponíveis: </span>
           <span className='minor-info no-bold'>{vacancies}</span>
         </div>
-      </div>  
+      </div>
     </Card>
   );
 }
@@ -65,4 +76,5 @@ const Card = styled.div`
     display: flex;
     flex-direction: column;
     align-items: baseline;
+  }
 `;
