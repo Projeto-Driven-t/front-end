@@ -2,7 +2,16 @@ import styled from 'styled-components';
 import { BsPersonFill, BsPerson } from 'react-icons/bs';
 import { toast } from 'react-toastify';
 
-export default function Room({ id, type, number, maxVacancies, availableVacancies, isSelected, isAvailable, callback }) {
+export default function Room({
+  id,
+  type,
+  number,
+  maxVacancies,
+  availableVacancies,
+  isSelected,
+  isAvailable,
+  callback,
+}) {
   const filledVacancies = maxVacancies - availableVacancies;
 
   if (!isAvailable) {
@@ -18,7 +27,11 @@ export default function Room({ id, type, number, maxVacancies, availableVacancie
     );
   } else {
     return (
-      <Container isAvailable={isAvailable} isSelected={isSelected} onClick={() => callback({ id, type, number })}>
+      <Container
+        isAvailable={isAvailable}
+        isSelected={isSelected}
+        onClick={() => callback({ id, type, number, maxVacancies, availableVacancies })}
+      >
         <Number>{number}</Number>
         <Vacancies isSelected={isSelected}>
           {Array.from({ length: availableVacancies }).map((_, index) => {

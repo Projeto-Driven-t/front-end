@@ -33,7 +33,7 @@ export default function HotelCard({ id, name, image, roomTypes, vacancies, isSel
   );
 }
 
-const Card = styled.div`
+export const Card = styled.div`
   width: 196px;
   height: 264px;
   margin-right: 16px;

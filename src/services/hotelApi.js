@@ -9,3 +9,24 @@ export async function getHotels(token) {
 
   return response.data;
 }
+
+export async function bookHotel(body, token) {
+  const response = await api.post('/hotels', body, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+
+  console.log(response.data);
+  return response.data;
+}
+
+export async function update(body, token) {
+  const response = await api.put('/hotels', body, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+
+  return response.data;
+}
