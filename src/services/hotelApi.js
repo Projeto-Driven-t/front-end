@@ -17,7 +17,6 @@ export async function bookHotel(body, token) {
     },
   });
 
-  console.log(response.data);
   return response.data;
 }
 

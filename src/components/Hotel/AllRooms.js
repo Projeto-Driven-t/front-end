@@ -11,10 +11,9 @@ import Room from './Room';
 export default function AllRooms({ rooms, id }) {
   const { selected, setSelected } = useToggle();
   const { hotelData, setHotelData, render, setRender } = useHotelContext();
-  const { saveHotel } = useSaveHotel();
+  const { saveHotel, saveHotelLoading } = useSaveHotel();
   const { updateRoom } = useUpdateRoom();
 
-  console.log(hotelData);
   async function reserveRoom() {
     setHotelData({
       ...hotelData,
@@ -40,6 +39,7 @@ export default function AllRooms({ rooms, id }) {
         updatedAt: new Date(),
       });
 
+      toast('Reservado com sucesso');
       setRender(!render);
     } catch (err) {
       toast('Você já possui uma reserva');
@@ -74,7 +74,7 @@ export default function AllRooms({ rooms, id }) {
       </Container>
       <BookRoom>
         {selected.id && selected.type && selected.number && selected.maxVacancies && selected.availableVacancies ? (
-          <Button onClick={() => reserveRoom()}>Reservar Quarto</Button>
+          <Button onClick={() => reserveRoom()} disabled={saveHotelLoading}>Reservar Quarto</Button>
         ) : (
           <></>
         )}
