@@ -24,7 +24,9 @@ export default function HotelConfirmation() {
           </div>
           <div className="Hotel-Info">
             <span className="minor-info">Pessoas no seu quarto </span>
-            <span className="minor-info no-bold">Você e mais {maxVacancies - 1}</span>
+            <span className="minor-info no-bold">
+              {type === 'Single' ? 'Somente você' : `Você e mais ${maxVacancies - 1}`}
+            </span>
           </div>
         </div>
       </Card>
