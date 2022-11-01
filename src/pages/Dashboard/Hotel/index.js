@@ -2,6 +2,7 @@ import TitleTypography from '../../../components/TitleTypography';
 import useCheckTicket from '../../../hooks/api/useCheckTicket';
 import React from 'react';
 import { useEffect } from 'react';
+import HotelAndRoom from '../../../components/Hotel';
 
 export default function Hotel() {
   const { checkTicket } = useCheckTicket();
@@ -20,10 +21,10 @@ export default function Hotel() {
       <TitleTypography title={'Escolha de Hotel e Quarto'} />
       {(checkTicket && checkTicket.modality === 'Presencial') ||
       (checkTicket && checkTicket.accommodation === 'Com Hotel') ? (
-        <HotelAndRoom />
-      ) : (
-        message
-      )}
+          <HotelAndRoom />
+        ) : (
+          message
+        )}
     </>
   );
 }
