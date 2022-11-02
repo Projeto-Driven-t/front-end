@@ -8,6 +8,7 @@ import useToggle from '../../hooks/useToggle';
 import { HotelWrapper } from './HotelWrapper';
 import HotelCard from './HotelCard';
 import useHotel from '../../hooks/api/useHotel';
+import AllRooms from './AllRooms';
 
 export default function Hotel() {
   const { selected, setSelected } = useToggle();
@@ -23,7 +24,7 @@ export default function Hotel() {
   };
 
   React.useEffect(() => {
-    if(hotels) {
+    if (hotels) {
       renderHotel();
     }
   }, [hotels]);
@@ -37,17 +38,20 @@ export default function Hotel() {
             return (
               <HotelCard
                 key={index}
+                id={hotel.id}
                 name={hotel.name}
                 image={hotel.imageUrl}
                 roomTypes={hotel.roomTypes}
                 vacancies={hotel.vacancies}
-                isSelected={selected.name === hotel.name}
+                isSelected={
+                  selected.id === hotel.id && selected.name === hotel.name && selected.image === hotel.imageUrl
+                }
                 callback={setSelected}
               />
             );
           })}
         </HotelList>
-        {selected.name ? <SubTitleTypography title={'Ótima pedida! Agora escolha seu quarto:'} /> : <></>}
+        {selected.id && selected.name && selected.image ? <AllRooms rooms={listOfHotels} id={selected.id} /> : <></>}
       </HotelWrapper>
     </>
   );
@@ -56,5 +60,4 @@ export default function Hotel() {
 const HotelList = styled.div`
   display: flex;
   margin-bottom: 20px;
-
 `;
