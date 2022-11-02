@@ -29,3 +29,13 @@ export async function update(body, token) {
 
   return response.data;
 }
+
+export async function deleteReservation(token) {
+  const response = await api.delete('/hotels', {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+
+  return response.data;
+}
