@@ -17,7 +17,7 @@ export default function EventMode() {
   const { modality } = useModality();
   const { accommodation } = useAccommodation();
 
-  async function renderModalities() {
+  async function renderData() {
     try {
       await setListOfModalities([...modality]);
       await setListOfAccommodations([...accommodation]);
@@ -28,7 +28,7 @@ export default function EventMode() {
 
   useEffect(() => {
     if (modality && accommodation) {
-      renderModalities();
+      renderData();
     }
   }, [modality, accommodation]);
 
