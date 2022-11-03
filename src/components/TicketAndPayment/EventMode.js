@@ -27,11 +27,7 @@ export default function EventMode() {
   }
 
   useEffect(() => {
-    if (modality) {
-      renderModalities();
-    }
-
-    if(accommodation) {
+    if (modality && accommodation) {
       renderModalities();
     }
   }, [modality, accommodation]);
@@ -51,7 +47,11 @@ export default function EventMode() {
           );
         })}
       </ModalityContainer>
-      {selected.type === 'Presencial' ? <EventPresential type={selected.type} price={selected.price} accommodation={listOfAccommodations}/> : <></>}
+      {selected.type === 'Presencial' ? (
+        <EventPresential type={selected.type} price={selected.price} accommodation={listOfAccommodations} />
+      ) : (
+        <></>
+      )}
       {selected.type === 'Online' ? <EventOnline type={selected.type} price={selected.price} /> : <></>}
     </TicketContainer>
   );
