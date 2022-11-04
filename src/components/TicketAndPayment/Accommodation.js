@@ -1,13 +1,13 @@
 import styled from 'styled-components';
 
-export default function Accommodation({ stayType, type, eventPrice, accommodationPrice, isSelected, callback }) {
+export default function Accommodation({ accommodation, accommodationPrice, isSelected, callback }) {
   return (
-    <AccommodationContainer isSelected={isSelected} onClick={() => callback({ type: type, stayType: stayType, price: eventPrice + accommodationPrice })}>
-      <AccommodationTitle>{stayType}</AccommodationTitle>
+    <AccommodationContainer isSelected={isSelected} onClick={() => callback({ accommodation, accommodationPrice })}>
+      <AccommodationTitle>{accommodation}</AccommodationTitle>
       <AccommodationPrice>+ R$ {accommodationPrice}</AccommodationPrice>
     </AccommodationContainer>
   );
-};
+}
 
 const AccommodationContainer = styled.div`
   width: 145px;
