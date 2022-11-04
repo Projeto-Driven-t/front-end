@@ -17,7 +17,7 @@ export default function EventMode() {
   const { modality } = useModality();
   const { accommodation } = useAccommodation();
 
-  async function renderModalities() {
+  async function renderData() {
     try {
       await setListOfModalities([...modality]);
       await setListOfAccommodations([...accommodation]);
@@ -27,12 +27,8 @@ export default function EventMode() {
   }
 
   useEffect(() => {
-    if (modality) {
-      renderModalities();
-    }
-
-    if(accommodation) {
-      renderModalities();
+    if (modality && accommodation) {
+      renderData();
     }
   }, [modality, accommodation]);
 
@@ -51,7 +47,11 @@ export default function EventMode() {
           );
         })}
       </ModalityContainer>
-      {selected.type === 'Presencial' ? <EventPresential type={selected.type} price={selected.price} accommodation={listOfAccommodations}/> : <></>}
+      {selected.type === 'Presencial' ? (
+        <EventPresential type={selected.type} price={selected.price} accommodation={listOfAccommodations} />
+      ) : (
+        <></>
+      )}
       {selected.type === 'Online' ? <EventOnline type={selected.type} price={selected.price} /> : <></>}
     </TicketContainer>
   );

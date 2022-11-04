@@ -36,6 +36,7 @@ export default function usePaymentForm() {
   const handleSubmit = async(e) => {
     e.preventDefault();
     setErrors(paymentValidation(values));
+   
     await savePayment({
       name: values.name,
       cardNumber: values.cardNumber,
@@ -43,13 +44,8 @@ export default function usePaymentForm() {
       cvv: values.cvc,
       totalValue: `${eventData.totalValue}`,
     });
-    const ticket = await saveTicket({
-      modality: eventData.modalityType,
-      modalityPrice: eventData.modalityPrice,
-      accommodation: eventData.accommodation,
-      accommodationPrice: eventData.hostingPrice,
-      totalValue: eventData.totalValue,
-    });
+    
+    const ticket = await saveTicket({ ...eventData });
 
     if (ticket) {
       setConfirmedPayment(ticket);

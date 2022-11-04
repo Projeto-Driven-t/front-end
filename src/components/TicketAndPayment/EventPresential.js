@@ -13,11 +13,11 @@ export default function EventPresential({ type, price, accommodation }) {
 
   function closerOnlineOrder() {
     setEventData({
-      modalityType: type,
-      modalityPrice: 0,
-      accommodation: selected.stayType,
-      hostingPrice: selected.price,
-      totalValue: selected.price,
+      modality: type,
+      modalityPrice: price,
+      accommodation: selected.accommodation,
+      accommodationPrice: selected.accommodationPrice,
+      totalValue: selected.accommodationPrice + price,
     });
     setRender(!render);
   }
@@ -32,12 +32,11 @@ export default function EventPresential({ type, price, accommodation }) {
               return (
                 <Accommodation
                   key={index}
-                  stayType={accommodation.accommodation}
-                  type={type}
+                  accommodation={accommodation.accommodation}
                   accommodationPrice={accommodation.price}
-                  eventPrice={price}
                   isSelected={
-                    selected.stayType === accommodation.accommodation && selected.price === accommodation.price + price
+                    selected.accommodation === accommodation.accommodation &&
+                    selected.accommodationPrice === accommodation.price
                   }
                   callback={setSelected}
                 />
@@ -45,17 +44,17 @@ export default function EventPresential({ type, price, accommodation }) {
             })}
           </ModalityEvent>
         </AccommodationContainer>
-        {selected.price === undefined ? (
-          <></>
-        ) : (
+        {selected.accommodation || selected.accommodationPrice ? (
           <OrderContainer>
-            <SubTitleTypography title={`Fechado! O total ficou em R$ ${selected.price}. Agora é só confirmar:`} />
+            <SubTitleTypography title={`Fechado! O total ficou em R$ ${selected.accommodationPrice + price}. Agora é só confirmar:`} />
             <CloseOrderContainer>
               <Button type="submit" onClick={() => closerOnlineOrder()}>
                 Reservar Ingresso
               </Button>
             </CloseOrderContainer>
           </OrderContainer>
+        ) : (
+          <></>
         )}
       </Container>
     </>
