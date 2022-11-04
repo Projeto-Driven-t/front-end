@@ -13,10 +13,10 @@ export default function EventPresential({ type, price, accommodation }) {
 
   function closerOnlineOrder() {
     setEventData({
-      modalityType: type,
+      modality: type,
       modalityPrice: 0,
       accommodation: selected.stayType,
-      hostingPrice: selected.price,
+      accommodationPrice: selected.price,
       totalValue: selected.price,
     });
     setRender(!render);

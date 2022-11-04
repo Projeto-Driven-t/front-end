@@ -8,10 +8,10 @@ export default function EventOnline({ type, price }) {
 
   function closerOnlineOrder() {
     setEventData({
-      modalityType: type,
+      modality: type,
       modalityPrice: price,
       accommodation: 'Sem Hotel',
-      hostingPrice: 0,
+      accommodationPrice: 0,
       totalValue: price,
     });
     setRender(!render);
