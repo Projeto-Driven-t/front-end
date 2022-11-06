@@ -3,10 +3,10 @@ import styled from 'styled-components';
 import useActivitiesContext from '../../contexts/ActivitiesContext';
 import ButtonTypography from '../ButtonTypography';
 
-export default function ActivitiesDays({ date, isSelected, callback }) {
+export default function ActivitiesDays({ id, date, isSelected, callback }) {
   const weekday = ['Domingo', 'Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sábado'];
   const data = new Date(date);
-  
+
   const { setActivitiesData } = useActivitiesContext();
 
   function activitiesSelection() {
@@ -16,10 +16,10 @@ export default function ActivitiesDays({ date, isSelected, callback }) {
   }
 
   return (
-    <Card isSelected={isSelected} onClick={() => (activitiesSelection(), callback({ date }))}>
+    <Card isSelected={isSelected} onClick={() => (activitiesSelection(), callback({ id, date }))}>
       <div className='Activities-Info'>
         <div>
-          <ButtonTypography text={`${weekday[data.getDay()]}, ${ data.getDate() }/${ data.getMonth() }`}/>
+          <ButtonTypography text={`${weekday[data.getDay()]}, ${data.getDate()}/${data.getMonth()}`} />
         </div>
       </div>
     </Card>
