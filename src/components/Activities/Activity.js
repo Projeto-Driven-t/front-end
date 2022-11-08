@@ -49,7 +49,7 @@ export default function Activity({ name, start, end, vacancies, isAvailable, isS
 }
 
 const ActivityWrapper = styled.div`
-  max-width: 265px;
+  width: 100%;
   padding: 12px 10px;
   border-radius: 5px;
   background-color: ${({ isSelected }) => (isSelected ? '#D0FFDB' : '#f1f1f1')};

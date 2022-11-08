@@ -47,7 +47,7 @@ export default function Activities() {
           })}
         </ListOfDays>
         {selected.id && selected.date ? (
-          <ListOfActivities id={selected.id} listOfActivities={listOfActivities} />
+          <ListOfActivities id={selected.id} listOfActivities={listOfActivities[selected.id - 1].Place} />
         ) : (
           <></>
         )}
